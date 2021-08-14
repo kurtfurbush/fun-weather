@@ -1,0 +1,20 @@
+networks:
+  fun-weather-network:
+
+services:
+    ui:
+        image: fun-weather-ui
+        restart: unless-stopped
+        ports:
+            - "3000:3000"
+        links:
+            - api
+        networks:
+            - fun-weather-network
+    api:
+        image: fun-weather-api
+        restart: unless-stopped
+        ports:
+            - "5000:5000"
+        networks:
+            - fun-weather-network
